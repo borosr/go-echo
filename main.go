@@ -8,8 +8,10 @@ import (
 	"net/http"
 )
 
+var id = xid.New().String()
+
 func main() {
-	log.Printf("Server stating, id is: %s", xid.New().String())
+	log.Printf("Server stating, id is: %s", id)
 	defer func() {
 		log.Println("Recovering server")
 		recover()
@@ -21,7 +23,7 @@ func main() {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	_, err := fmt.Fprintf(w, "Request is:\n%s", getFromatedRequest(r))
+	_, err := fmt.Fprintf(w, "Request [%s] is:\n%s", id, getFromatedRequest(r))
 	if err != nil {
 		panic(err)
 	}
