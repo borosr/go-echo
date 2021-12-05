@@ -1,0 +1,9 @@
+Url: {{ .URL }}
+Method is: {{ .Method }}
+Protocol: {{ .Protocol }}
+Headers: {{ .Headers }}
+Accept: {{ .Accepts }}
+User-Agent: {{ .UserAgent }}
+{{- if .Body }}
+Body: {{- .Body -}}
+{{- end }}

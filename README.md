@@ -4,7 +4,7 @@ Basic HTTP server in Golang for test Kubernetes
 ### Usage
 
 ```shell script
-docker run -p 8080:8080 go-echo
+docker run -p 8080:8080 borosr/go-echo:latest
 ```
 
 ### Response
@@ -18,6 +18,6 @@ Protocol:
 Headers:
 Accept: 
 User-Agent: 
-Body: 
+Body: # if present
 ```
 
