@@ -6,10 +6,14 @@ WORKDIR $GOPATH/src/github.com/borosr/go-echo/
 COPY . .
 
 ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
-RUN go get -d -v
+RUN go get -d -v && go mod vendor
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /go/bin/go-echo
+ARG TARGETOS
+ARG TARGETARCH
+
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-w -s" -o /go/bin/go-echo
 
 FROM scratch
 
